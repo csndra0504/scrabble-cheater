@@ -11,6 +11,13 @@ defmodule CheaterTest do
    assert Cheater.match('abcdef','bdf')
    refute Cheater.match('abc','abcdef')
  end
+
+  test "make_dict" do
+    words = Cheater.make_dict("test_words.txt")
+    assert words == ['aa', 'aah', 'aahed', []]
+  end
+
+
 end
 
 defmodule Cheater do
@@ -29,7 +36,7 @@ defmodule Cheater do
  end
 
  def make_dict(file) do
-   {:ok, dict} = File.read(file)
+   dict = File.read!(file)
    dict |> String.split("\n") |>
      Enum.map(fn word -> to_charlist word end)
  end
