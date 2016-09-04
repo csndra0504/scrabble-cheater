@@ -13,8 +13,14 @@ defmodule CheaterTest do
  end
 
   test "make_dict" do
-    words = Cheater.make_dict("test_words.txt")
-    assert words == ['aa', 'aah', 'aahed', []]
+    dict = Cheater.make_dict("test_words.txt")
+    assert dict == ['aa', 'aah', 'aahed', []]
+  end
+
+  test "matches" do
+    dict = Cheater.make_dict("test_words.txt")
+    assert Cheater.matches('aah',dict) == ['aa', 'aah', []]
+    assert Cheater.matches('ahh',dict) == [[]]
   end
 
 
